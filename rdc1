@@ -1,0 +1,78 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int i = 0 ;
+char input[10];
+
+void E();
+void Eprime();
+void T();
+void Tprime();
+void F();
+
+void success(){
+    printf("valid string\n");
+    exit(0);
+}
+void failure(){
+    printf("invalid string\n");
+    exit(0);
+}
+
+void E(){
+    T();
+    Eprime();
+}
+
+void Eprime(){
+    if (input[i] == '+'){
+        i++;
+        T();
+        Eprime();
+    }
+}
+
+void T(){
+    F();
+    Tprime();
+}
+
+void Tprime(){
+    if (input[i] == '*'){
+        i++;
+        F();
+        Tprime();
+    }
+}
+
+void F(){
+    if (input[i] == 'i'){
+        i++;
+    }
+    else if (input[i] == '('){
+        i++;
+        E();
+        if (input[i] == ')'){
+            i++;
+        }
+        else{
+            failure();
+        }
+    }
+    else{
+        failure();
+    }
+}
+
+int main(){
+    printf("enter the string bruv:\n");
+    scanf("%s", input);
+    E();
+    if (input[i] == '\0'){
+        success();
+    }
+    else{
+        failure();
+    }
+    return 0;
+}
