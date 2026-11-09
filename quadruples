@@ -1,0 +1,37 @@
+
+#include <stdio.h>
+
+int main()
+{
+    int ch;
+
+    printf("1. A = -B * C + -B * C\n");
+    printf("2. A = -B * (C + D)\n");
+    printf("Enter choice: ");
+    scanf("%d", &ch);
+
+    printf("\nOperator\tArg1\tArg2\tResult\n");
+
+    if (ch == 1)
+    {
+        printf("uminus\t\tB\t-\tt1\n");
+        printf("*\t\tt1\tC\tt2\n");
+        printf("uminus\t\tB\t-\tt3\n");
+        printf("*\t\tt3\tC\tt4\n");
+        printf("+\t\tt2\tt4\tt5\n");
+        printf("=\t\tt5\t-\tA\n");
+    }
+    else if (ch == 2)
+    {
+        printf("+\t\tC\tD\tt1\n");
+        printf("uminus\t\tB\t-\tt2\n");
+        printf("*\t\tt2\tt1\tt3\n");
+        printf("=\t\tt3\t-\tA\n");
+    }
+    else
+    {
+        printf("Invalid choice\n");
+    }
+
+    return 0;
+}
