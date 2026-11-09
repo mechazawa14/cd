@@ -1,0 +1,17 @@
+%{
+ #include <stdio.h>
+%}
+
+%%
+if|else|while|for|goto|do|int|char|float  printf("valid keyword");
+.*                                        printf("invalid keyword");
+%%
+
+int yywrap(){
+    return 1;
+}
+
+int main(){
+    yylex();
+    return 0;
+}
