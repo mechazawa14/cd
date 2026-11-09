@@ -1,0 +1,17 @@
+%{
+ #include <stdio.h>
+%}
+
+%%
+[aeiouAEIOU]    printf("vowel");
+.*              printf("consonent");
+%%
+
+int yywrap(){
+    return 1;
+}
+
+int main(){
+    yylex();
+    return 0 ;
+}
