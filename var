@@ -1,0 +1,38 @@
+%{
+  #include "y.tab.h"
+%}
+
+%%
+[a-zA-Z][a-zA-Z0-9]*   {return ID;}
+[\n]                   {return '\n';}
+[\t]                    ;
+.                       {return yytext[0];}
+%%
+
+int yywrap(){
+    return 1;
+}
+
+%{
+   #include <stdio.h>
+   int yylex();
+   void yyerror(char *);
+%}
+
+
+%token ID 
+
+%% 
+S : ID '\n'{printf("valid variable"); };
+
+%%
+
+void yyerror(char *){
+    printf("invalid variable");
+}
+
+int main(){
+    printf("enter the variable");
+    yyparse();
+    return 0;
+}
