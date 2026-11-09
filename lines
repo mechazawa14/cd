@@ -1,0 +1,20 @@
+%{
+   #include <stdio.h>
+   int l,w,c = 0;
+%}
+
+%% 
+\n         {l++; c++;}
+[a-zA-Z_]* {w+=1; c+=yyleng; }
+.          {c++;}
+%%
+
+int yywrap(){
+    return 1 ; 
+}
+
+int main(){
+    yylex();
+    printf("the number of lines , characters and words are %d, %d, %d \n:", l,c,w);
+    return 0;
+}
