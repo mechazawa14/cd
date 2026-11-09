@@ -1,0 +1,25 @@
+#include <stdio.h>
+
+int main(){
+
+    char t1[10];
+    char t2[10];
+    printf("enter the type of first variable:\n");
+    scanf("%9s", t1);
+    printf("enter the type of second variable:\n");
+    scanf("%9s", t2);
+
+    if ((t1[0] == 'i') || (t1[0] == 'f') &&
+        (t1[0] == 'i') || (t1[0] == 'f')){
+            if (t1[0] == t2[0]){
+                printf("valid type\n");
+            }
+            else{
+                printf("type mismatch\n");
+            }
+        }
+        else{
+            printf("invalid input\n");
+        }
+        return 0;   
+}
