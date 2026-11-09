@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int i = 0 ;
+char input[10] ;
+
+void S();
+void L();
+void Lprime();
+
+void success(){
+    printf("valid string input\n");
+    exit(0);
+}
+
+void failure(){
+    printf("invalid string\n");
+    exit(0);
+}
+
+void S(){
+    if (input[i] == '('){
+        i++;
+        L();
+        if (input[i] == ')'){
+            i++;
+        }
+        else{
+            failure();
+        }
+    }
+    else if (input[i] == 'a'){
+        i++;
+    }
+    else{
+        failure();
+    }
+}
+
+
+void L(){
+    S();
+    Lprime();
+}
+
+void Lprime(){
+    if (input[i] == ','){
+        i++;
+        S();
+        Lprime();
+    }
+}
+
+
+int main(){
+    printf("Enter the string: ");
+    scanf("%s", input);
+
+    S();
+
+    if(input[i] == '\0')
+        success();
+    else
+        failure();
+
+    return 0;
+}
