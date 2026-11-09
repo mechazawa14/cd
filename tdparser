@@ -1,0 +1,52 @@
+%{
+  #include "y.tab.h"
+  #include <stdio.h>
+%}
+
+%%
+[a-zA-Z][a-zA-Z0-9]* { return ID; }
+[ \t]                ;
+\n                   { return '\n'; }
+.                    { return yytext[0]; }
+%%
+
+int yywrap(){
+    return 1;
+}
+
+%{
+  #include <stdio.h>
+  int yylex();
+  void yyerror(char *);
+%}
+
+%token ID
+
+%% 
+S : E '\n' {printf("valid expression");};
+
+E : T EP 
+  ;
+EP : '+' T EP
+   | /* empty */
+   ;
+T : F TP
+  ;
+TP : '*' F TP 
+   | /* empty */
+   ;
+F : '(' E ')'
+  |  ID
+  ;
+
+%%
+
+void yyerror(char *){
+    printf("invalid input\n");
+}
+
+int main(){
+    printf("enter the input expression\n:");
+    yyparse();
+    return 0;
+}
