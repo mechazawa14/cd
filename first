@@ -1,0 +1,46 @@
+
+#include <stdio.h>
+#include <string.h>
+
+int first[3][2] = {0};
+
+int main()
+{
+    char lhs[] = {'E','E','T','T','F','F'};
+    char *rhs[] = {"E+T","T","T*F","F","(E)","id"};
+    int i, j, a, b, change;
+
+    do {
+        change = 0;
+
+        for (i = 0; i < 6; i++) {
+            a = lhs[i]=='E' ? 0 : lhs[i]=='T' ? 1 : 2;
+
+            if (rhs[i][0] == '(' || strcmp(rhs[i],"id")==0) {
+                j = rhs[i][0]=='(' ? 0 : 1;
+                if (!first[a][j]) {
+                    first[a][j] = 1;
+                    change = 1;
+                }
+            }
+            else {
+                b = rhs[i][0]=='E' ? 0 : rhs[i][0]=='T' ? 1 : 2;
+
+                for (j = 0; j < 2; j++)
+                    if (first[b][j] && !first[a][j]) {
+                        first[a][j] = 1;
+                        change = 1;
+                    }
+            }
+        }
+    } while (change);
+
+    for (i = 0; i < 3; i++) {
+        printf("FIRST(%c) = { ", "ETF"[i]);
+        if (first[i][0]) printf("( ");
+        if (first[i][1]) printf("id ");
+        printf("}\n");
+    }
+
+    return 0;
+}
