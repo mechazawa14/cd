@@ -1,0 +1,19 @@
+%{
+   #include "y.tab.h"
+   int l,w,c = 0;
+%}
+
+%% 
+"//".*                  {printf("comments");}
+[a-zA-Z_][a-zA-Z0-9_]*"("    {printf("user defined function");}
+[0-9]+                    {printf("constants");}
+%%
+
+int yywrap(){
+    return 1 ; 
+}
+
+int main(){
+    yylex();
+    return 0;
+}
