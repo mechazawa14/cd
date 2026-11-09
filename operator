@@ -1,0 +1,19 @@
+%{
+#include <stdio.h>
+%}
+
+%%
+"+"|"-"|"*"|"/"    printf("arithmatic operator");
+">>"|"<<"|"|"      printf("bitwise operator");
+"||"|"&&"|"^"      printf("logical operator");
+"+="|"*="|"=="     printf("assignment operator");
+%%
+
+int yywrap(){
+    return 1 ;
+}
+
+int main (){
+    yylex();
+    return 0;
+}
