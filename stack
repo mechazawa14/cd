@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <string.h>
+
+int top = -1;
+int stack[10];
+
+void push(int x){
+    stack[++top] = x;
+    printf("allocated: %d\n", x);
+}
+
+void pop(){
+    if (top == -1){
+        printf("stack underflow\n");
+    }
+    else{
+        printf("popping elem :%d\n", stack[top--]);
+    }
+}
+
+
+int main(){
+    push(100);
+    push(200);
+    pop();
+    pop();
+    return 0;
+}
